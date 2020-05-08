@@ -10,13 +10,9 @@ public class ParseReqToJson {
         int totalbytes = req.getContentLength();
         // 容纳请求消息实体的字节数组
         byte[] dataOrigin = new byte[totalbytes];
-
         DataInputStream in = new DataInputStream(req.getInputStream());
-
         in.readFully(dataOrigin); // 根据长度，将消息实体的内容读入字节数组dataOrigin中
-
         in.close(); // 关闭数据流
-
         return new String(dataOrigin);
     }
 }

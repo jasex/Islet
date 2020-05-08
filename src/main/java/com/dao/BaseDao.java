@@ -10,8 +10,6 @@ import java.util.Properties;
 
 public class BaseDao {
 
-    //创建日志记录器logger
-    static final Logger logger=Logger.getLogger(BaseDao.class);
 
     Connection conn=null;
     PreparedStatement ps=null;
@@ -33,10 +31,9 @@ public class BaseDao {
 
             Class.forName(DRIVER_CLASS);
             conn=DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            logger.info("Success connected to the DB");
+            System.out.println("success connected to db");
         } catch (IOException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            logger.error(e.getMessage());
         }
     }
 
@@ -67,7 +64,6 @@ public class BaseDao {
                 rs.close();
             }catch (SQLException e){
                 e.printStackTrace();
-                logger.debug(e.getMessage());
             }
         }
 
@@ -76,7 +72,6 @@ public class BaseDao {
                 ps.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                logger.debug(e.getMessage());
             }
         }
 
@@ -85,7 +80,6 @@ public class BaseDao {
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                logger.debug(e.getMessage());
             }
         }
         return true;
@@ -113,12 +107,10 @@ public class BaseDao {
             if(e instanceof NullPointerException){
                 //如果是空指针异常
                 e.printStackTrace();
-                logger.error(((NullPointerException) e).getMessage());
 
             }else {
                 //如果是SQL异常
                 e.printStackTrace();
-                logger.error(((SQLException) e).getMessage());
             }
 
         }
@@ -143,11 +135,9 @@ public class BaseDao {
             if(e instanceof NullPointerException){
                 //如果是空指针异常
                 e.printStackTrace();
-                logger.error(((NullPointerException) e).getMessage());
             }else {
                 //如果是SQL异常
                 e.printStackTrace();
-                logger.error(((SQLException) e).getMessage());
             }
 
         }
