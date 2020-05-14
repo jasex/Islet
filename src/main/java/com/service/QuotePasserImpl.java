@@ -4,6 +4,7 @@ import com.dao.QuoteDaoImpl;
 import com.entities.Quote;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class QuotePasserImpl implements QuotePasser{
@@ -18,9 +19,13 @@ public class QuotePasserImpl implements QuotePasser{
         return quotePasser;
     }
     @Override
-    public Quote passQuote() throws SQLException {
+    public ArrayList<Quote> passQuote() throws SQLException {
         //调用dao类中的方法
         QuoteDaoImpl quoteDao=QuoteDaoImpl.getInstance();
-        return quoteDao.getQuoteById(new Random().nextInt(quoteDao.getTotal())+1);
+        ArrayList<Quote> quotes=new ArrayList<>();
+        for(int i=0;i<3;i++){
+            quotes.add(quoteDao.getQuoteById(new Random().nextInt(quoteDao.getTotal())+1));
+        }
+        return quotes;
     }
 }

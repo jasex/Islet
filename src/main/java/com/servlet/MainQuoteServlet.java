@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(name = "MainQuoteServlet",urlPatterns = "/quote")
 public class MainQuoteServlet extends HttpServlet {
@@ -28,17 +29,18 @@ public class MainQuoteServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         //此打印流对象可向浏览器输出信息
         QuotePasserImpl quotePasser=QuotePasserImpl.getInstance();
-        Quote quote=null;
+        ArrayList<Quote> quotes=null;
         try {
-            quote=quotePasser.passQuote();
+            quotes =quotePasser.passQuote();
         } catch (SQLException throwables) {
-            //向日志输出
+            //控制台输出
             throwables.printStackTrace();
         }
-        System.out.println(quote);
+        //输出quote
+        System.out.println(quotes);
         //向外部写出
-        System.out.println(JSON.toJSONString(quote));
-        out.write(JSON.toJSONString(quote));
+        System.out.println(JSON.toJSONString(quotes));
+        out.write(JSON.toJSONString(quotes));
         out.flush();
 
     }
