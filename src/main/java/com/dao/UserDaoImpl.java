@@ -2,7 +2,9 @@ package com.dao;
 
 import com.entities.User;
 
-import java.util.List;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 public class UserDaoImpl extends BaseDao implements UserDao{
     private static UserDaoImpl userDao;
@@ -15,8 +17,30 @@ public class UserDaoImpl extends BaseDao implements UserDao{
         }
         return userDao;
     }
+
+    /**
+     * 根据username获取user
+     *
+     * !!!!!!!!!!!!!!PS!!!!!!!!!!!!!!!!!!!!!!!!该法不严谨
+     *
+     *
+     * @param name
+     * @return
+     * @throws SQLException
+     */
     @Override
-    public User getUserByUserName(String name) {
-        return null;
+    public ArrayList<User> getUserByUserName(String name) throws SQLException {
+        ArrayList<User> users=new ArrayList<>();
+        User user=null;
+        String sql="select * from user where username=?;";
+        Object[] params={name};
+        rs=this.ExecuteQuery(sql,params);
+
+        while(rs.next()){
+            String content=rs.getString(3);
+            user=new User(name,content);
+            users.add(user);
+        }
+        return users;
     }
 }

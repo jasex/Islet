@@ -2,6 +2,7 @@ package com.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -23,6 +24,8 @@ public class SimpleCORSFilter implements Filter {
             response.setHeader("Access-Control-Max-Age", "3600");
             //response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
             response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+
             filterChain.doFilter(req, res);
 
     }

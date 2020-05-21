@@ -18,6 +18,7 @@ import java.io.*;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         //设置输入格式为UTF-8
         resp.setCharacterEncoding("UTF-8");
         //设置内容类型为UTF-8
@@ -29,9 +30,9 @@ public class LoginServlet extends HttpServlet {
         //判断用户是否存在
         boolean exist=UserCheckerImpl.getInstance().checkUser(req);
 
-        //如果存在状态码200 不存在403
-        if(exist){
-            resp.setStatus(403);
+        //如果存在状态码200 不存在401
+        if(exist==false){
+            resp.setStatus(401);
         }else {
             resp.setStatus(200);
         }
@@ -39,5 +40,18 @@ public class LoginServlet extends HttpServlet {
         //清理打印流
         out.flush();
         //冲洗
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST");
+        resp.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        resp.setHeader("Access-Control-Max-Age", "86400");
+        System.out.println("do options");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        service(req,resp);
+
     }
 }
