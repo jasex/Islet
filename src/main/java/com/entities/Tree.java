@@ -1,22 +1,22 @@
 package com.entities;
 
 public class Tree {
-    private int userName;
+    private int id;
     private String note;
     private int like;
 
-    public Tree(int userName, String note, int like) {
-        this.userName = userName;
+    public Tree(int id, String note, int like) {
+        this.id = id;
         this.note = note;
         this.like = like;
     }
 
-    public int getUserName() {
-        return userName;
+    public int getId() {
+        return id;
     }
 
-    public void setUserName(int userName) {
-        this.userName = userName;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNote() {
