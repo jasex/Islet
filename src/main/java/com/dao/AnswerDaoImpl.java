@@ -35,7 +35,7 @@ public class AnswerDaoImpl extends BaseDao implements AnswerDao{
     @Override
     public Answer getAnswerByid(int id) throws SQLException {
         Answer answer=null;
-        String sql="select * from main quote where id=?;";
+        String sql="select * from answer where id=?;";
         Object[] params={id};
         rs=this.ExecuteQuery(sql,params);
         while(rs.next()){
@@ -49,7 +49,5 @@ public class AnswerDaoImpl extends BaseDao implements AnswerDao{
         return total;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
-    }
+
 }

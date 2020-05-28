@@ -20,10 +20,6 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 
     /**
      * 根据username获取user
-     *
-     * !!!!!!!!!!!!!!PS!!!!!!!!!!!!!!!!!!!!!!!!该法不严谨
-     *
-     *
      * @param name
      * @return
      * @throws SQLException
