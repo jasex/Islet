@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
 
         //判断用户是否存在
         boolean exist=UserCheckerImpl.getInstance().checkUser(req);
+        System.out.println(exist+"exist!!!!!!!!");
 
         //如果存在状态码200 不存在401
         if(exist==false){
