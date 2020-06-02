@@ -1,6 +1,5 @@
 package com.dao;
 
-import com.entities.Quote;
 import com.entities.Tree;
 
 import java.sql.ResultSet;
@@ -37,18 +36,19 @@ public class TreeDaoImpl extends BaseDao implements TreeDao{
         Object[] params={id};
         rs=this.ExecuteQuery(sql,params);
         while(rs.next()){
-            int Id=rs.getInt(1);
-            String line=rs.getString(2);
-            int likes=rs.getInt(5);
-            tree=new Tree(Id,line,likes);
+            String quote=rs.getString(2);
+            tree=new Tree(quote);
         }
         return tree;
     }
 
     @Override
-    public int insertNote(Tree tree) {
-        return 0;
+    public int postTree(Tree tree) {
+        String sql="insert into tree (line) values(?)";
+        Object[] params={tree.getQuote()};
+        return this.executeUpdate(sql,params);
     }
+
 
     public int getTotal() {
         return total;

@@ -1,14 +1,23 @@
 package com.entities;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Tree {
+    @JSONField(serialize = false)
     private int id;
-    private String note;
+    @JSONField(serialize = true)
+    private String quote;
+    @JSONField(serialize = false)
     private int like;
 
-    public Tree(int id, String note, int like) {
+    public Tree(int id, String quote, int like) {
         this.id = id;
-        this.note = note;
+        this.quote = quote;
         this.like = like;
+    }
+
+    public Tree(String quote){
+        this.quote=quote;
     }
 
     public int getId() {
@@ -19,12 +28,12 @@ public class Tree {
         this.id = id;
     }
 
-    public String getNote() {
-        return note;
+    public String getQuote() {
+        return quote;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setQuote(String quote) {
+        this.quote = quote;
     }
 
     public int getLike() {
