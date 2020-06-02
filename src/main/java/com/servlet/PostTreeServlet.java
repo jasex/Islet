@@ -1,5 +1,9 @@
 package com.servlet;
 
+import com.entities.Tree;
+import com.service.TreePosterImpl;
+import com.service.util.ParseReqToTree;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 @WebServlet(name = "PostTreeServlet",urlPatterns = "/postTree")
 public class PostTreeServlet extends HttpServlet {
@@ -19,6 +24,13 @@ public class PostTreeServlet extends HttpServlet {
         //获得打印流对象
         PrintWriter out = resp.getWriter();
         //此打印流对象可向浏览器输出信息
+        Tree tree=ParseReqToTree.parseReq(req);
+        TreePosterImpl treePoster=TreePosterImpl.getInstance();
+        try {
+            treePoster.postTree(tree);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 

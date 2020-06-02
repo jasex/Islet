@@ -15,6 +15,9 @@ public class Tree {
         this.quote = quote;
         this.like = like;
     }
+    public Tree(){
+
+    }
 
     public Tree(String quote){
         this.quote=quote;
