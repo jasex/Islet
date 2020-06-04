@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 解决跨域问题
+ * 后端解决跨域问题
  */
 @WebFilter("/*")  // "/*"会拦截所有的资源
 public class SimpleCORSFilter implements Filter {

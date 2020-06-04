@@ -33,5 +33,5 @@ public class AnswerServlet extends HttpServlet {
         System.out.println(answer);
         System.out.println(JSON.toJSONString(answer));
         out.write(JSON.toJSONString(answer));
-    }
+   }
 }

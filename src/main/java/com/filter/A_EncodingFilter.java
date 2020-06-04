@@ -24,11 +24,9 @@ public class A_EncodingFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 
-        // 基于HTTP
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        // 设置POST请求乱码问题 （只针对POST，GET请求无效并不受影响）
         request.setCharacterEncoding("UTF-8");
 
 
@@ -38,9 +36,7 @@ public class A_EncodingFilter implements Filter {
         if ("GET".equalsIgnoreCase(method)) {
             // 得到服务器的版本
             String serverInfo = request.getServletContext().getServerInfo(); // Apache Tomcat/8.0.45
-            // 截取字符串得到服务器版本号
             String versionStr =  serverInfo.substring(serverInfo.indexOf("/")+1,serverInfo.indexOf("."));
-            // 判断是否是Tomcat7及以下版本
             if (versionStr != null && Integer.parseInt(versionStr) < 8) {
                 // GET请求处理
                 HttpServletRequest request2 = new MyWapper(request);
@@ -63,12 +59,6 @@ public class A_EncodingFilter implements Filter {
 
 
 
-/**
- * 1、定义类，继承HttpServletRequestWrapper包装类
- * 2、重写getParameter方法
- * 3、在重写的方法中处理乱码问题
- *
- */
 class MyWapper extends HttpServletRequestWrapper {
 
     static final Logger logger=Logger.getLogger(MyWapper.class);
@@ -78,9 +68,7 @@ class MyWapper extends HttpServletRequestWrapper {
         this.request = request;
     }
 
-    /**
-     * 重写getParameter()方法
-     */
+
     @Override
     public String getParameter(String name) {
 

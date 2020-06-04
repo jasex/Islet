@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Islet:war2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Islet_war2</output-path>
+    <root id="archive" name="Islet_war.war">
+      <element id="artifact" artifact-name="Islet:war exploded" />
+      <element id="artifact" artifact-name="Islet:war" />
+    </root>
+  </artifact>
+</component>
